@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -54,36 +55,46 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public static class PlaceholderFragment extends Fragment implements View.OnClickListener {
-        private ImageView mIvChange;
+        private TextView mTvChange;
         private boolean mIsBackVisible=false;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main,container,false);
-            mIvChange=(ImageView)rootView.findViewById(R.id.imagechange);
-            mIvChange.setOnClickListener(mOnImageChangeListener);
+            mTvChange=(TextView)rootView.findViewById(R.id.imagechange);
+            mTvChange.setOnClickListener(mOnTvChangeListener);
             return rootView;
         }
 
-        private View.OnClickListener mOnImageChangeListener = new View.OnClickListener() {
+        private View.OnClickListener mOnTvChangeListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                excuteAnimtor(mIvChange);
+                excuteAnimtor(mTvChange);
             }
         };
 
-        private void excuteAnimtor(final ImageView view){
-            PropertyValuesHolder scaleXHolder = PropertyValuesHolder.ofFloat("scaleX",1,0,1);
-            PropertyValuesHolder scaleYHolder = PropertyValuesHolder.ofFloat("scaleY",1,0,1);
-            ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(view,scaleXHolder,scaleYHolder);
+        private void excuteAnimtor(final TextView view){
+            PropertyValuesHolder scaleXHolder = PropertyValuesHolder.ofFloat("rotationY",0,90f);
+            ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(view,scaleXHolder);
             animator.setInterpolator(new LinearInterpolator());
             animator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     view.setBackgroundResource(R.drawable.image_42);
+                    view.setText("");
+                    excuteAnimatorBack(view);
                 }
             });
-            animator.setDuration(2000).start();
+
+            animator.setDuration(500).start();
         }
+
+        private void excuteAnimatorBack(final TextView view){
+            ObjectAnimator animator = ObjectAnimator.ofFloat(view,"rotationY",90,180);
+            animator.setInterpolator(new LinearInterpolator());
+            animator.setDuration(500).start();
+        }
+
+
 
         @Override
         public void onClick(View v) {
