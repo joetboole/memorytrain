@@ -60,4 +60,13 @@ public class MainActivity extends ActionBarActivity {
                 .commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        int count=getFragmentManager().getBackStackEntryCount();
+        if(count>1){
+            getFragmentManager().popBackStack();
+            return;
+        }
+        super.onBackPressed();
+    }
 }

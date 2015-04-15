@@ -27,15 +27,14 @@ public class DigitalPileAdapter extends BaseAdapter{
           if(mCardsList.size()>0){
               mCardsList.clear();
           }
-//        for (int i=0;i<110;i++){
-            int i=42;
+        for (int i=0;i<15;i++){
             String rememberId=String.valueOf(i);
             if(i>=100){
                 rememberId=String.format("0%d",i-100);
             }
             CardModel model=new CardModel(TYPE_NUM_PILES,i,rememberId,getResourceIdByName(String.format("image_%s", rememberId)));
             mCardsList.add(model);
-//        }
+        }
     }
 
     private int getResourceIdByName(String name){
