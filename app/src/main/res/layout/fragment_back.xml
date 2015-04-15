@@ -5,5 +5,5 @@
         android:id="@+id/iv_back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/image_42"/>
+        android:background="@drawable/image_52"/>
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.joez.memorytrainapp;
+package com.example.joez.memorytrain;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
