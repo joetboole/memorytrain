@@ -2,6 +2,7 @@ package com.example.joez.memorytrain;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -63,7 +64,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         int count=getFragmentManager().getBackStackEntryCount();
-        if(count>1){
+        Log.e("debug","onback@@@count:"+count);
+        if(count>=1){
             getFragmentManager().popBackStack();
             return;
         }

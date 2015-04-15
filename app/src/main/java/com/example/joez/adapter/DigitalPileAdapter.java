@@ -27,7 +27,7 @@ public class DigitalPileAdapter extends BaseAdapter{
           if(mCardsList.size()>0){
               mCardsList.clear();
           }
-        for (int i=0;i<15;i++){
+        for (int i=1;i<=15;i++){
             String rememberId=String.valueOf(i);
             if(i>=100){
                 rememberId=String.format("0%d",i-100);
