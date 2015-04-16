@@ -35,7 +35,7 @@ public class MemoryTrainApplication extends Application{
 
     private void initCardPiles(){
         if(mCardsList==null){
-            mCardsList=new ArrayList<>();
+            mCardsList=new ArrayList<CardModel>();
         }
         for (int i=1;i<=110;i++){
             String rememberId=String.valueOf(i);

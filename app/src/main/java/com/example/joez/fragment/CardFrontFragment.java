@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.example.joez.memorytrain.MainActivity;
 import com.example.joez.memorytrain.R;
+
+import java.sql.Time;
 
 public class CardFrontFragment extends Fragment {
     private static final String KEY_PILE="pile";
@@ -49,4 +52,15 @@ public class CardFrontFragment extends Fragment {
         mPile=getArguments().getString(KEY_PILE,"");
     }
 
+    private CountDownTimer mTimerCountDown=new CountDownTimer(5000,1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+
+        }
+
+        @Override
+        public void onFinish() {
+
+        }
+    };
 }
