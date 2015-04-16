@@ -12,8 +12,15 @@ import android.widget.ImageView;
 import com.example.joez.memorytrain.MainActivity;
 import com.example.joez.memorytrain.R;
 public class CardBackFragment extends Fragment {
-
-    private OnFragmentInteractionListener mListener;
+    private static final String KEY_RESOURCEID="resourceId";
+    private int mResourceId;
+    public static CardBackFragment newInstance(int resourceId){
+        CardBackFragment cardBackFragment=new CardBackFragment();
+        Bundle bundle=new Bundle();
+        bundle.putInt(KEY_RESOURCEID,resourceId);
+        cardBackFragment.setArguments(bundle);
+        return cardBackFragment;
+    }
 
     public CardBackFragment() {
         // Required empty public constructor
@@ -24,6 +31,7 @@ public class CardBackFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.fragment_back, container, false);
         ImageView ivBack=(ImageView)root.findViewById(R.id.iv_back);
+        ivBack.setBackgroundResource(mResourceId);
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,32 +41,9 @@ public class CardBackFragment extends Fragment {
         return root;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-//        try {
-//            mListener = (OnFragmentInteractionListener) activity;
-//        } catch (ClassCastException e) {
-//            throw new ClassCastException(activity.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
+        mResourceId=getArguments().getInt(KEY_RESOURCEID);
     }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        public void onFragmentInteraction(Uri uri);
-    }
-
 }

@@ -14,10 +14,18 @@ import com.example.joez.memorytrain.MainActivity;
 import com.example.joez.memorytrain.R;
 
 public class CardFrontFragment extends Fragment {
-    private OnFragmentInteractionListener mListener;
+    private static final String KEY_PILE="pile";
+    private String mPile;
+
+    public static CardFrontFragment newInstance(String pile){
+        CardFrontFragment cardFrontFragment=new CardFrontFragment();
+        Bundle bundle=new Bundle();
+        bundle.putString(KEY_PILE,pile);
+        cardFrontFragment.setArguments(bundle);
+        return cardFrontFragment;
+    }
 
     public CardFrontFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -25,6 +33,7 @@ public class CardFrontFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root=inflater.inflate(R.layout.fragment_front, container, false);
         TextView tvFront=(TextView)root.findViewById(R.id.tv_front);
+        tvFront.setText(mPile);
         tvFront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,32 +43,10 @@ public class CardFrontFragment extends Fragment {
         return root;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-//        try {
-//            mListener = (OnFragmentInteractionListener) activity;
-//        } catch (ClassCastException e) {
-//            throw new ClassCastException(activity.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        public void onFragmentInteraction(Uri uri);
+        mPile=getArguments().getString(KEY_PILE,"");
     }
 
 }

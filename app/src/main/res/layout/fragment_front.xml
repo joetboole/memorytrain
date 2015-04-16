@@ -5,7 +5,9 @@
         android:id="@+id/tv_front"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/image_54"
-        android:textSize="50sp"
+        android:background="@color/piles"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="100sp"
         android:text="1"/>
 </LinearLayout>

@@ -9,9 +9,12 @@ import android.view.MenuItem;
 import com.example.joez.fragment.CardBackFragment;
 import com.example.joez.fragment.CardFrontFragment;
 import com.example.joez.fragment.DigitalPileFragment;
+import com.example.joez.model.CardModel;
 
+import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
+    private CardModel mCurrentCardPile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +24,7 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new DigitalPileFragment()).commit();
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -48,15 +52,17 @@ public class MainActivity extends ActionBarActivity {
                 .setCustomAnimations(
                         R.animator.flip_right_in, R.animator.flip_right_out,
                         R.animator.flip_left_in, R.animator.flip_left_out)
-                .replace(R.id.container, new CardBackFragment())
+                .replace(R.id.container, CardBackFragment.newInstance(mCurrentCardPile.getResourceId()))
                 .addToBackStack(null)
                 .commit();
     }
 
-    public void seePilesDetail(){
+    public void seePilesDetail(int index){
+        mShowingBack=false;
+        mCurrentCardPile=MemoryTrainApplication.getInstance().getCardsPiles().get(index);
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container, new CardFrontFragment())
+                .replace(R.id.container, CardFrontFragment.newInstance(mCurrentCardPile.getRememberNum()))
                 .addToBackStack(null)
                 .commit();
     }
@@ -64,7 +70,6 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         int count=getFragmentManager().getBackStackEntryCount();
-        Log.e("debug","onback@@@count:"+count);
         if(count>=1){
             getFragmentManager().popBackStack();
             return;
