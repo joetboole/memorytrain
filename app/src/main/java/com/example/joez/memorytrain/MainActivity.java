@@ -92,7 +92,7 @@ public class MainActivity extends ActionBarActivity {
     public boolean seeNextFailureLoop(){
        boolean result=false;
        int index = mFailurePiles.indexOf(mCurrentCardPile);
-        if(index+1<mFailurePiles.size()-1){
+        if(index+1<mFailurePiles.size()){
             mCurrentCardPile=mFailurePiles.get(index+1);
             result=true;
         }
