@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:id="@+id/ll_headcontroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_clearfailures"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="clear"/>
+        <Button
+            android:id="@+id/btn_failureloop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            android:text="Failure Loop"/>
+        <TextView
+            android:id="@+id/tv_counttime"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="65dp"
+            android:gravity="center"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            android:text="5s"/>
+        </LinearLayout>
+
     <TextView
         android:id="@+id/tv_front"
+        android:layout_below="@+id/ll_headcontroll"
+        android:layout_above="@+id/ll_controll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/piles"
@@ -10,4 +46,27 @@
         android:textColor="@color/white"
         android:textSize="100sp"
         android:text="1"/>
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_controll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+    <Button
+        android:id="@+id/tv_next"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:text="next"
+        />
+    <Button
+        android:id="@+id/tv_fail"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textSize="30sp"
+        android:text="fail"/>
+    </LinearLayout>
+</RelativeLayout>

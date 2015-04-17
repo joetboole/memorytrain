@@ -11,6 +11,7 @@ import com.example.joez.fragment.CardFrontFragment;
 import com.example.joez.fragment.DigitalPileFragment;
 import com.example.joez.model.CardModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
@@ -65,6 +66,58 @@ public class MainActivity extends ActionBarActivity {
                 .replace(R.id.container, CardFrontFragment.newInstance(mCurrentCardPile.getRememberNum()))
                 .addToBackStack(null)
                 .commit();
+    }
+
+    public boolean seeNextPiles(){
+        boolean result=false;
+        mShowingBack=false;
+        List<CardModel> cardPiles=MemoryTrainApplication.getInstance().getCardsPiles();
+        if(mCurrentCardPile.getNumber()<cardPiles.size()) {
+            mCurrentCardPile = MemoryTrainApplication.getInstance().getCardsPiles().get(mCurrentCardPile.getNumber());
+            result=true;
+        }
+        return result;
+    }
+
+    private List<CardModel> mFailurePiles=new ArrayList<>();
+
+    public List<CardModel> getFailurePiles(){
+        return mFailurePiles;
+    }
+
+    public void startFailureLoop(){
+        mCurrentCardPile=mFailurePiles.get(0);
+    }
+
+    public boolean seeNextFailureLoop(){
+       boolean result=false;
+       int index = mFailurePiles.indexOf(mCurrentCardPile);
+        if(index+1<mFailurePiles.size()-1){
+            mCurrentCardPile=mFailurePiles.get(index+1);
+            result=true;
+        }
+        return result;
+    }
+
+    public void addFailurePile(){
+        if(!mFailurePiles.contains(mCurrentCardPile)) {
+            mFailurePiles.add(mCurrentCardPile);
+        }
+    }
+
+    public void removeFailurePile(){
+        if(mFailurePiles.contains(mCurrentCardPile)){
+            mFailurePiles.remove(mCurrentCardPile);
+        }
+    }
+
+    public CardModel getCurrentCardPile(){
+        return mCurrentCardPile;
+    }
+
+    public void clearFailurePiles(){
+        mCurrentCardPile=MemoryTrainApplication.getInstance().getCardsPiles().get(0);
+        mFailurePiles.clear();
     }
 
     @Override
